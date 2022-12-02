@@ -37,11 +37,11 @@ int main() {
     PrintInfo(pass);
     PrintInfo(3).PrintID();
 
-    // cout << "Test2"sv << endl;
-    // array<IdentityDocument*, 3> docs = { (IdentityDocument*)(new Passport()), (IdentityDocument*)(new DrivingLicence()), (IdentityDocument*)(new Passport()) };
-    // for (const auto* doc : docs) {
-    //     doc->PrintID();
-    // }
+    cout << "Test2"sv << endl;
+    array<IdentityDocument*, 3> docs = { (IdentityDocument*)(new Passport()), (IdentityDocument*)(new DrivingLicence()), (IdentityDocument*)(new Passport()) };
+    for (const auto* doc : docs) {
+        doc->PrintID();
+    }
 
     // for (size_t i = 0; i < docs.size(); ++i) {
     //     docs[i]->Delete();

@@ -10,6 +10,7 @@ public:
     IdentityDocument()
         : unique_id_(++unique_id_count_) 
     {
+        IdentityDocument::SetVTable(this);
         std::cout << "IdentityDocument::Ctor() : "sv << unique_id_ << std::endl;
     }
 
@@ -22,6 +23,7 @@ public:
     IdentityDocument(const IdentityDocument& other)
         : unique_id_(++unique_id_count_) 
     {
+        IdentityDocument::SetVTable(this);
         std::cout << "IdentityDocument::CCtor() : "sv << unique_id_ << std::endl;
     }
 
@@ -35,11 +37,11 @@ public:
         std::cout << "unique_id_count_ : "sv << unique_id_count_ << std::endl;
     }
 
-    using InsideFunction = void(*)(const IdentityDocument*);
+    using PrintIDFunction = void(*)(const IdentityDocument*);
     using DeleteFunction = void(*)(IdentityDocument*);
 
     struct Vtable {
-        InsideFunction print_id;
+        PrintIDFunction print_id;
         DeleteFunction delete_this;
     };
 
@@ -58,7 +60,6 @@ public:
 
     static IdentityDocument::Vtable VTABLE;
     
-protected:
     int GetID() const {
         return unique_id_;
     }
