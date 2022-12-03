@@ -34,6 +34,10 @@ public:
         GetVtable()->print_id(this);
     }
 
+    void Delete() {
+        GetVtable()->delete_this(this);
+    }
+
     void PrintVisa(const std::string& country) const {
         GetVtable()->print_visa(this, country);
     }
@@ -48,8 +52,8 @@ public:
 
     struct Vtable {
         PrintIDFunction print_id;
-        PrintVisaFunction print_visa;
         DeleteFunction delete_this;
+        PrintVisaFunction print_visa;
     };
 
     static void SetVTable(Passport* obj) {
@@ -95,4 +99,4 @@ private:
     }
 };
 
-Passport::Vtable Passport::VTABLE = { Passport::PrintID, Passport::PrintVisa, Passport::Delete };
+Passport::Vtable Passport::VTABLE = { Passport::PrintID, Passport::Delete, Passport::PrintVisa };

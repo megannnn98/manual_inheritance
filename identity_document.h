@@ -17,7 +17,6 @@ public:
     ~IdentityDocument() {
         --unique_id_count_;
         std::cout << "IdentityDocument::Dtor() : "sv << unique_id_ << std::endl;
-        GetVtable()->delete_this(this);
     }
 
     IdentityDocument(const IdentityDocument& other)
@@ -33,6 +32,10 @@ public:
         GetVtable()->print_id(this);
     }
 
+    void Delete() {
+        GetVtable()->delete_this(this);
+    }
+    
     static void PrintUniqueIDCount() {
         std::cout << "unique_id_count_ : "sv << unique_id_count_ << std::endl;
     }

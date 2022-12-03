@@ -43,18 +43,18 @@ int main() {
         doc->PrintID();
     }
 
-    // for (size_t i = 0; i < docs.size(); ++i) {
-    //     docs[i]->Delete();
-    // }
+    for (size_t i = 0; i < docs.size(); ++i) {
+        docs[i]->Delete();
+    }
 
-    // cout << "Test3"sv << endl;
-    // array<IdentityDocument, 3> docs2 = {Passport(), DrivingLicence(), IdentityDocument()};
+    cout << "Test3"sv << endl;
+    array<IdentityDocument, 3> docs2 = {Passport(), DrivingLicence(), IdentityDocument()};
 
-    // for (size_t i = 0; i < docs2.size(); ++i) {
-    //     docs2[i].PrintID();
-    // }
+    for (size_t i = 0; i < docs2.size(); ++i) {
+        docs2[i].PrintID();
+    }
 
-    // PrintInfo(docs2[0]);
+    PrintInfo(docs2[0]);
 
     // cout << "Test4"sv << endl;
     // IdentityDocument::PrintUniqueIDCount();
