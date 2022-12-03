@@ -16,7 +16,7 @@ public:
     }
 
     DrivingLicence(const DrivingLicence& other)
-        : identityDocument_()
+        : identityDocument_(other.identityDocument_)
     {
         DrivingLicence::SetVTable(this);
         std::cout << "DrivingLicence::CCtor()"sv << std::endl;
@@ -25,6 +25,10 @@ public:
     ~DrivingLicence() {
         std::cout << "DrivingLicence::Dtor()"sv << std::endl;
         IdentityDocument::SetVTable((IdentityDocument*)this);
+    }
+
+    int GetID() const {
+        return identityDocument_.GetID();
     }
 
     void PrintID() const {

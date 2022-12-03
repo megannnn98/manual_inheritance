@@ -56,10 +56,10 @@ int main() {
 
     PrintInfo(docs2[0]);
 
-    // cout << "Test4"sv << endl;
-    // IdentityDocument::PrintUniqueIDCount();
+    cout << "Test4"sv << endl;
+    IdentityDocument::PrintUniqueIDCount();
 
-    // cout << "Test5"sv << endl;
-    // Passport pass2;
-    // pass2.PrintUniqueIDCount();
+    cout << "Test5"sv << endl;
+    Passport pass2;
+    pass2.PrintUniqueIDCount();
 }

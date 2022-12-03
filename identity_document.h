@@ -14,16 +14,16 @@ public:
         std::cout << "IdentityDocument::Ctor() : "sv << unique_id_ << std::endl;
     }
 
-    ~IdentityDocument() {
-        --unique_id_count_;
-        std::cout << "IdentityDocument::Dtor() : "sv << unique_id_ << std::endl;
-    }
-
     IdentityDocument(const IdentityDocument& other)
         : unique_id_(++unique_id_count_) 
     {
         IdentityDocument::SetVTable(this);
         std::cout << "IdentityDocument::CCtor() : "sv << unique_id_ << std::endl;
+    }
+
+    ~IdentityDocument() {
+        --unique_id_count_;
+        std::cout << "IdentityDocument::Dtor() : "sv << unique_id_ << std::endl;
     }
 
     IdentityDocument& operator=(const IdentityDocument&) = delete;
@@ -84,5 +84,4 @@ private:
 };
 
 IdentityDocument::Vtable IdentityDocument::VTABLE = { IdentityDocument::PrintID, IdentityDocument::Delete };
-
 int IdentityDocument::unique_id_count_ = 0;

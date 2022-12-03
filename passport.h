@@ -18,7 +18,7 @@ public:
     }
 
     Passport(const Passport& other)
-        : identityDocument_()
+        : identityDocument_(other.identityDocument_)
         , expiration_date_(other.expiration_date_) 
     {
         Passport::SetVTable(this);
@@ -28,6 +28,10 @@ public:
     ~Passport() {
         std::cout << "Passport::Dtor()"sv << std::endl;
         IdentityDocument::SetVTable((IdentityDocument*)this);
+    }
+
+    static void PrintUniqueIDCount() {
+        IdentityDocument::PrintUniqueIDCount();
     }
 
     void PrintID() const {
@@ -47,8 +51,8 @@ public:
     }
 
     using PrintIDFunction = void(*)(const Passport*);
-    using PrintVisaFunction = void(*)(const Passport*, const std::string&);
     using DeleteFunction = void(*)(Passport*);
+    using PrintVisaFunction = void(*)(const Passport*, const std::string&);
 
     struct Vtable {
         PrintIDFunction print_id;
@@ -69,7 +73,11 @@ public:
     }
 
     static Passport::Vtable VTABLE;
-    
+
+    int GetID() const {
+        return identityDocument_.GetID();
+    }
+
 private:
     IdentityDocument identityDocument_;
     const struct tm expiration_date_;
@@ -83,7 +91,7 @@ private:
 	}
 
     static void PrintID(const Passport* obj) {
-        std::cout << "Passport::PrintID() : "sv << obj->identityDocument_.GetID();
+        std::cout << "Passport::PrintID() : "sv << obj->GetID();
         std::cout << " expiration date : "sv << obj->expiration_date_.tm_mday << "/"sv << obj->expiration_date_.tm_mon << "/"sv
                   << obj->expiration_date_.tm_year + 1900 << std::endl;
     }
